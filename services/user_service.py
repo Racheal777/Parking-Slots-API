@@ -55,6 +55,12 @@ def register_user(user:UserCreate, session:Session) -> HTTPException | UserRespo
 
         session.add(new_user)
         session.commit()
+
+        otp = generate_otp()
+        write_to_redis(f"user-otp-{existing_user.phone_number}", otp)
+
+        send_messages(existing_user.phone_number, f'This is your OTP {otp}')
+
         session.refresh(new_user)
 
         return UserResponse(

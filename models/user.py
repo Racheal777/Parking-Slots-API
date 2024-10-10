@@ -18,8 +18,6 @@ class UserOtp(BaseModel):
     phone_number: str
     otp: str
 
-
-
 class UserResponse(BaseModel):
     id: UUID4
     name: str
