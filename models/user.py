@@ -11,6 +11,15 @@ class UserCreate(BaseModel):
     email: EmailStr
     phone_number: str
 
+class UserLogin(BaseModel):
+    phone_number: str
+
+class UserOtp(BaseModel):
+    phone_number: str
+    otp: str
+
+
+
 class UserResponse(BaseModel):
     id: UUID4
     name: str
@@ -19,6 +28,13 @@ class UserResponse(BaseModel):
     is_verified: bool
     created_at: datetime
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    phone_number: str
 
 class Config:
         orm_mode = True
